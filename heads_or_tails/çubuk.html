@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1000 Adet 1000 Yazı Tura Atış Dağılımı</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <div id="grafik"></div>
+
+  <script>
+    let toplamYazı = 0;
+    let toplamTura = 0;
+
+    for (let i = 0; i < 1000; i++) {
+      let yazıSayısı = 0;
+      let turaSayısı = 0;
+      for (let j = 0; j < 1000; j++) {
+        const rastgele = Math.random();
+        if (rastgele < 0.5) {
+          yazıSayısı++;
+        } else {
+          turaSayısı++;
+        }
+      }
+      toplamYazı += yazıSayısı;
+      toplamTura += turaSayısı;
+    }
+
+    const veri = [{
+      x: ['Yazı', 'Tura'],
+      y: [toplamYazı, toplamTura],
+      type: 'bar'
+    }];
+
+    const düzen = {
+      title: '1000 Adet 1000 Atışın Toplam Yazı ve Tura Sayıları',
+      xaxis: {
+        title: 'Atış Sonucu'
+      },
+      yaxis: {
+        title: 'Toplam Sayı'
+      }
+    };
+
+    Plotly.newPlot('grafik', veri, düzen);
+  </script>
+</body>
+</html>

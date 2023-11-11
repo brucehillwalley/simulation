@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1000 Adet 1000 Atış Dağılımı</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <canvas id="grafik"></canvas>
+
+  <script>
+    let toplamYazı = 0;
+    let toplamTura = 0;
+
+    for (let i = 0; i < 1000; i++) {
+      let yazıSayısı = 0;
+      let turaSayısı = 0;
+      for (let j = 0; j < 1000; j++) {
+        const rastgele = Math.random();
+        if (rastgele < 0.5) {
+          yazıSayısı++;
+        } else {
+          turaSayısı++;
+        }
+      }
+      toplamYazı += yazıSayısı;
+      toplamTura += turaSayısı;
+    }
+
+    const grafik = document.getElementById('grafik').getContext('2d');
+    new Chart(grafik, {
+      type: 'bar',
+      data: {
+        labels: ['Yazı', 'Tura'],
+        datasets: [{
+          label: 'Atış Sonucu',
+          data: [toplamYazı, toplamTura],
+          backgroundColor: ['blue', 'green']
+        }]
+      },
+      options: {
+        responsive: false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yazı Tura Atışı Grafiği</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <div id="grafik"></div>
+
+  <script>
+    let yazıSayısı = 0;
+    let turaSayısı = 0;
+    let atışlar = [];
+
+    for (let i = 0; i < 1000; i++) {
+      const rastgele = Math.random();
+      if (rastgele < 0.5) {
+        yazıSayısı++;
+        atışlar.push("Yazı");
+      } else {
+        turaSayısı++;
+        atışlar.push("Tura");
+      }
+    }
+
+    const veri = [{
+      x: atışlar,
+      type: 'histogram'
+    }];
+
+    const düzen = {
+      title: 'Yazı Tura Atışı Grafiği',
+      xaxis: {
+        title: 'Atışlar'
+      },
+      yaxis: {
+        title: 'Frekans'
+      }
+    };
+
+    Plotly.newPlot('grafik', veri, düzen);
+  </script>
+</body>
+</html>

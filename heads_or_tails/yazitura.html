@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1000 Adet 1000 Atış Dağılımı</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <div id="grafik"></div>
+
+  <script>
+    let atışlar = [];
+
+    for (let i = 0; i < 1000; i++) {
+      let yazıSayısı = 0;
+      let turaSayısı = 0;
+      for (let j = 0; j < 1000; j++) {
+        const rastgele = Math.random();
+        if (rastgele < 0.5) {
+          yazıSayısı++;
+        } else {
+          turaSayısı++;
+        }
+      }
+      atışlar.push({ yazı: yazıSayısı, tura: turaSayısı });
+    }
+
+    const yazıVerileri = atışlar.map(atış => atış.yazı);
+    const turaVerileri = atışlar.map(atış => atış.tura);
+
+    const veri = [
+      {
+        x: yazıVerileri,
+        type: 'histogram',
+        name: 'Yazı'
+      },
+      {
+        x: turaVerileri,
+        type: 'histogram',
+        name: 'Tura'
+      }
+    ];
+
+    const düzen = {
+      barmode: 'overlay',
+      title: '1000 Adet 1000 Atış Dağılımı',
+      xaxis: {
+        title: 'Atış Sayısı'
+      },
+      yaxis: {
+        title: 'Frekans'
+      }
+    };
+
+    Plotly.newPlot('grafik', veri, düzen);
+  </script>
+</body>
+</html>
