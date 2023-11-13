@@ -25,12 +25,12 @@
       }
     }
 
-    const veri = [{
+    const histogramVeri = [{
       x: atışlar,
       type: 'histogram'
     }];
 
-    const düzen = {
+    const histogramDüzen = {
       title: 'Yazı Tura Atışı Grafiği',
       xaxis: {
         title: 'Atışlar'
@@ -40,7 +40,19 @@
       }
     };
 
-    Plotly.newPlot('grafik', veri, düzen);
+    Plotly.newPlot('grafik', histogramVeri, histogramDüzen);
+
+    const pieVeri = [{
+      values: [yazıSayısı, turaSayısı],
+      labels: ['Yazı', 'Tura'],
+      type: 'pie'
+    }];
+
+    const pieDüzen = {
+      title: 'Yazı Tura Dağılımı'
+    };
+
+    Plotly.newPlot('grafik', pieVeri, pieDüzen);
   </script>
 </body>
 </html>
